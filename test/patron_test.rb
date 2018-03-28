@@ -16,9 +16,10 @@ class PatronTest<MiniTest::Test
   end
 
   def test_we_can_add_interests
+    skip
     bob = Patron.new
-    bob.add_interests("Dead Sea Scrolls")
-    bob.add_interests("Gems and Minerals")
+    bob.add_interest("Dead Sea Scrolls")
+    bob.add_interest("Gems and Minerals")
     assert_equal ["Dead Sea Scrolls", "Gems and Minerals"], bob.interests
   end
 
