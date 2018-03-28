@@ -3,7 +3,7 @@ require './lib/patron'
 require 'minitest/autorun'
 require 'minitest/pride'
 
-class MuseumTest<MiniTest::Test
+class MuseumTest < MiniTest::Test
 
   def test_if_it_exists
     dmns = Museum.new
@@ -12,20 +12,20 @@ class MuseumTest<MiniTest::Test
 
   def test_it_has_a_name
     dmns = Museum.new
-    assert_equal "Denver Museum of Nature and Science", dmns.name
+    assert_equal 'Denver Museum of Nature and Science', dmns.name
   end
 
   def test_we_can_add_exhibits
     dmns = Museum.new
-    dmns.add_exhibit("Dead Sea Scrolls", 10)
-    assert_equal 10, dmns.exhibits["Dead Sea Scrolls"]
+    dmns.add_exhibit('Dead Sea Scrolls', 10)
+    assert_equal 10, dmns.exhibits['Dead Sea Scrolls']
 
   end
 
   def test_we_can_add_multiple_exhibits
     dmns = Museum.new
-    dmns.add_exhibit("Dead Sea Scrolls", 10)
-    dmns.add_exhibit("Gems and Minerals", 0)
+    dmns.add_exhibit('Dead Sea Scrolls', 10)
+    dmns.add_exhibit('Gems and Minerals', 0)
     assert_equal 2, dmns.exhibits.count
   end
 
@@ -37,8 +37,8 @@ class MuseumTest<MiniTest::Test
   def test_we_can_increase_revenue_by_addmitting_patron
     dmns = Museum.new
     bob = Patron.new
-    dmns.add_exhibit("Dead Sea Scrolls", 10)
-    dmns.add_exhibit("Gems and Minerals", 0)
+    dmns.add_exhibit('Dead Sea Scrolls', 10)
+    dmns.add_exhibit('Gems and Minerals', 0)
     dmns.admit(bob)
     assert_equal 10, dmns.revenue
   end
@@ -49,14 +49,14 @@ class MuseumTest<MiniTest::Test
     bob = Patron.new
     sally = Patron.new
 
-    bob.add_interest("Gems and Minerals")
-    bob.add_interest("Dead Sea Scrolls")
-    bob.add_interest("Imax")
+    bob.add_interest('Gems and Minerals')
+    bob.add_interest('Dead Sea Scrolls')
+    bob.add_interest('Imax')
 
-    sally.add_interest("Dead Sea Scrolls")
+    sally.add_interest('Dead Sea Scrolls')
 
-    dmns.add_exhibit("Dead Sea Scrolls", 10)
-    dmns.add_exhibit("Gems and Minerals", 0)
+    dmns.add_exhibit('Dead Sea Scrolls', 10)
+    dmns.add_exhibit('Gems and Minerals', 0)
     dmns.admit(bob)
     dmns.admit(sally)
 
@@ -69,18 +69,17 @@ class MuseumTest<MiniTest::Test
     dmns = Museum.new
     bob = Patron.new
     sally = Patron.new
-    bob.add_interest("Gems and Minerals")
-    bob.add_interest("Dead Sea Scrolls")
-    bob.add_interest("Imax")
+    bob.add_interest('Gems and Minerals')
+    bob.add_interest('Dead Sea Scrolls')
+    bob.add_interest('Imax')
 
-    sally.add_interest("Dead Sea Scrolls")
 
-    dmns.add_exhibit("Dead Sea Scrolls", 10)
-    dmns.add_exhibit("Gems and Minerals", 0)
+    dmns.add_exhibit('Dead Sea Scrolls', 10)
+    dmns.add_exhibit('Gems and Minerals', 0)
 
-    dmns.admit(bob)
     dmns.admit(sally)
-    assert_equal 40, dmns.revenue
-    assert_equal ["Bob", "Sally"], dmns.patrons_of("Dead Sea Scrolls")
+    dmns.admit(bob)
+    assert_equal 30, dmns.revenue
+    assert_equal ['Bob'], dmns.patrons_of('Dead Sea Scrolls')
   end
 end
