@@ -9,7 +9,7 @@ class Museum
     @name = name
     @exhibits = {}
     @revenue = 0
-    @patrons = []
+    @patrons = {}
 
   end
 
@@ -19,14 +19,20 @@ class Museum
 
   def admit(patron)
     @revenue += 10
-    interest = patron.interests
-    interest.each do |interest|
+    interests = patron.interests
+    interests.each do |interest|
       if @exhibits[interest].nil?
         @revenue += 0
       else
-      @revenue += @exhibits[interest]
+        @patrons[interest] = []
+        @patrons[interest] << patron.name
+        @revenue += @exhibits[interest]
       end
     end
+  end
+
+  def patrons_of(exhibit)
+    patrons[exhibit]
   end
 
 

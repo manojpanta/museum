@@ -61,7 +61,26 @@ class MuseumTest<MiniTest::Test
     dmns.admit(sally)
 
     assert_equal 40, dmns.revenue
-    # assert_equal " ", dmns.patrons
 
+
+  end
+
+  def test_patron_of_an_exhibit
+    dmns = Museum.new
+    bob = Patron.new
+    sally = Patron.new
+    bob.add_interest("Gems and Minerals")
+    bob.add_interest("Dead Sea Scrolls")
+    bob.add_interest("Imax")
+
+    sally.add_interest("Dead Sea Scrolls")
+
+    dmns.add_exhibit("Dead Sea Scrolls", 10)
+    dmns.add_exhibit("Gems and Minerals", 0)
+
+    dmns.admit(bob)
+    dmns.admit(sally)
+    assert_equal 40, dmns.revenue
+    assert_equal ["Bob", "Sally"], dmns.patrons_of("Dead Sea Scrolls")
   end
 end
