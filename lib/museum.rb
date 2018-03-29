@@ -1,4 +1,5 @@
 class Museum
+
   attr_reader :name,
               :exhibits,
               :revenue,
@@ -8,7 +9,7 @@ class Museum
     @name = name
     @exhibits = {}
     @revenue = 0
-    @patrons = {}
+    @patrons = []
   end
 
   def add_exhibit(name, cost)
@@ -23,13 +24,18 @@ class Museum
         @revenue += 0
       else
         @revenue += @exhibits[interest]
-        @patrons[interest] = []
-        @patrons[interest] << patron.name
+        @patrons << [interest, patron.name]
       end
     end
   end
 
   def patrons_of(exhibit)
-    patrons[exhibit]
+    array1 = []
+    @patrons.find_all do |array|
+      if array[0] == exhibit
+        array1 << array[1]
+      end
+    end
+    array1
   end
 end

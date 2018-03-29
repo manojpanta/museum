@@ -2,7 +2,7 @@ class Patron
   attr_reader :name,
               :interests
 
-  def initialize(name = 'Bob')
+  def initialize(name)
     @name = name
     @interests = []
   end
